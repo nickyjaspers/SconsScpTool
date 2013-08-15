@@ -11,11 +11,15 @@ Installation
 To make use of the scp tool, the most easy way is to put the scp.py file into the directory site_scons/site_tools.
 So the following directory structure will be made.
 
-  +- ProjectDir/
+  +- ProjectDir
   |  +-SConstruct
+  
   |  +-main.cpp
-  |  +-site_scons/
-  |  | +-site_tools/
+  
+  |  +-site_scons
+  
+  |  | +-site_tools
+  
   |  | | +-scp.py
 
 You can also place in to global site_scons directory if that is preferred.
@@ -25,7 +29,7 @@ For more information, see http://www.scons.org/doc/production/HTML/scons-user/x3
 How to use
 ----------
 
-### -----start SConstruct file
+### start SConstruct file
 import os
 
 ### Create environment with default tools and the scp tool
@@ -41,7 +45,7 @@ binary = env.Program(target = 'MyTarget', source = [main.cpp])
 if (ARGUMENTS.get('deploy', 0) == 'true'):
   env_arm.Alias('deploy', env.Scp(target = ['dummy'], source=[binary]));
 
-### -----end SConstruct file
+### end SConstruct file
 
 Now browse to the projectdir and enter 'scons deploy=true'
 The created binary will be copied to the scp target.
